@@ -2,8 +2,8 @@
 
 set -euo pipefail
 
+VERSION="v0.0.1"
 TZ="Asia/Shanghai"
-VERSION="v0.0.0-dev"
 BUILT=$(date +%FT%T%z)
 
 cat >pb/version.go <<EOF
