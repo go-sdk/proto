@@ -71,6 +71,7 @@ func (m *HelloReq) validate(all bool) error {
 	if len(errors) > 0 {
 		return HelloReqMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -171,6 +172,7 @@ func (m *HelloResp) validate(all bool) error {
 	if len(errors) > 0 {
 		return HelloRespMultiError(errors)
 	}
+
 	return nil
 }
 
