@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package helloworld;
+
+option go_package = "github.com/go-sdk/pb";
+
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "API Document"
+    description: ""
+    version: "1.0"
+  }
+
+  schemes: HTTP
+  schemes: HTTPS
+
+  consumes: "application/json"
+  produces: "application/json"
+
+  security_definitions: {
+    security: {
+      key: "Token"
+      value: {
+        type: TYPE_API_KEY
+        in: IN_HEADER
+        name: "token"
+      }
+    }
+  }
+
+  security: {
+    security_requirement: {
+      key: "Token"
+      value: {}
+    }
+  }
+};
