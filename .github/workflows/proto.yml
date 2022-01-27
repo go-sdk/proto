@@ -30,7 +30,9 @@ jobs:
         with:
           path: |
             ~/.cache/buf
-          key: ${{ runner.os }}-buf-${{ hashFiles('**/buf.lock') }}
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-cache-${{ hashFiles('**/buf.lock') }}
       - name: Go
         uses: actions/setup-go@v2
         with:
