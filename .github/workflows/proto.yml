@@ -25,6 +25,10 @@ jobs:
       - name: Backup
         if: ${{ github.event_name != 'pull_request' }}
         run: mv pb/.git git_bak
+      - name: Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
       - name: Buf
         uses: bufbuild/buf-setup-action@main
         with:
