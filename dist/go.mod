@@ -1,4 +1,4 @@
-module github.com/go-sdk/proto
+module github.com/go-sdk/pb
 
 go 1.17
 
