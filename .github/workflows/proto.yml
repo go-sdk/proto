@@ -25,6 +25,12 @@ jobs:
       - name: Backup
         if: ${{ github.event_name != 'pull_request' }}
         run: mv pb/.git git_bak
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/buf
+          key: ${{ runner.os }}-buf-${{ hashFiles('**/buf.lock') }}
       - name: Go
         uses: actions/setup-go@v2
         with:
