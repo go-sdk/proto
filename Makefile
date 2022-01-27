@@ -1,9 +1,9 @@
 .PHONY: pb download
 
 pb:
-	rm -rf pb && mkdir pb
+	@rm -rf pb && mkdir pb
 	buf generate -v
-	./pb_gen_extra.sh
+	@./pb_gen_extra.sh
 
 download:
-	cd include && ./download.sh
+	@cd include && ./download.sh

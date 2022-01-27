@@ -1,0 +1,59 @@
+name: Proto
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  update:
+    name: Update
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Checkout PB
+        uses: actions/checkout@v2
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          repository: go-sdk/pb
+          path: pb
+          token: ${{ secrets.PAGE_PAT }}
+      - name: Backup
+        if: ${{ github.event_name != 'pull_request' }}
+        run: mv pb/.git git_bak
+      - name: Buf
+        uses: bufbuild/buf-setup-action@main
+        with:
+          github_token: ${{ github.token }}
+      - name: Buf Generate
+        run: make pb
+      - name: Restore
+        if: ${{ github.event_name != 'pull_request' }}
+        run: |
+          cd pb
+          mv ../git_bak .git
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      - name: Update
+        if: ${{ github.event_name != 'pull_request' }}
+        run: |
+          cd pb
+          git add -A
+          git commit -m "automatically update generated proto"
+          git push -u origin master
+      - name: Tag
+        if: ${{ github.event_name != 'pull_request' }}
+        run: |
+          if [ $(git describe --exact-match --tags HEAD 2>/dev/null | wc -l) -gt 0 ]; then
+            cd pb
+            ver=$(git describe --exact-match --tags HEAD 2>/dev/null)
+            echo "new tag $ver"
+            git tag "$ver"
+            git push origin "$ver"
+          else
+            echo "no tag"
+          fi
