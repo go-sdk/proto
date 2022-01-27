@@ -30,9 +30,7 @@ jobs:
         with:
           github_token: ${{ github.token }}
       - name: Buf Generate
-        run: |
-          export GO111MODULE=off
-          make pb
+        run: make pb
       - name: Restore
         if: ${{ github.event_name != 'pull_request' }}
         run: |
