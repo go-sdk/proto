@@ -18,3 +18,60 @@ jobs:
           bump-minor-pre-major: true
           bump-patch-for-minor-pre-major: true
           pull-request-title-pattern: "release: ${version}"
+      - name: Checkout
+        if: ${{ steps.release.outputs.release_created }}
+        uses: actions/checkout@v2
+      - name: Checkout PB
+        if: ${{ steps.release.outputs.release_created }}
+        uses: actions/checkout@v2
+        with:
+          repository: go-sdk/pb
+          path: pb
+          token: ${{ secrets.PAGE_PAT }}
+      - name: Backup
+        if: ${{ steps.release.outputs.release_created }}
+        run: mv pb/.git git_bak
+      - name: Cache
+        if: ${{ steps.release.outputs.release_created }}
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/buf
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-cache-${{ hashFiles('**/buf.lock') }}
+      - name: Go
+        if: ${{ steps.release.outputs.release_created }}
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+      - name: Buf
+        if: ${{ steps.release.outputs.release_created }}
+        uses: bufbuild/buf-setup-action@main
+        with:
+          github_token: ${{ github.token }}
+      - name: Buf Generate
+        if: ${{ steps.release.outputs.release_created }}
+        run: make pb
+      - name: Restore
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          cd pb
+          mv ../git_bak .git
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      - name: Update
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          cd pb
+          git add -A
+          git commit -m "automatically update generated proto (release)"
+          git push -u origin master
+      - name: Tag
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          cd pb
+          ver=$(git describe --exact-match --tags HEAD 2>/dev/null)
+          echo "new tag $ver"
+          git tag "$ver"
+          git push origin "$ver"
