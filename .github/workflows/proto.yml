@@ -9,10 +9,18 @@ on:
       - master
 
 jobs:
-  verify:
-    name: Verify
+  generate:
+    name: Generate
     runs-on: ubuntu-latest
     steps:
+      - name: Release
+        id: release
+        uses: GoogleCloudPlatform/release-please-action@v3
+        with:
+          release-type: go
+          bump-minor-pre-major: true
+          bump-patch-for-minor-pre-major: true
+          pull-request-title-pattern: "release: ${version}"
       - name: Checkout
         uses: actions/checkout@v2
       - name: Checkout PB
@@ -57,3 +65,11 @@ jobs:
           git add -A
           git commit -m "automatically update generated proto"
           git push -u origin master
+      - name: Tag
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          cd pb
+          ver=$(git describe --exact-match --tags HEAD 2>/dev/null)
+          echo "new tag $ver"
+          git tag "$ver"
+          git push origin "$ver"
