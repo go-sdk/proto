@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.0.8](https://github.com/go-sdk/proto/compare/v0.0.7...v0.0.8) (2022-01-28)
+
+
+### Bug Fixes
+
+* fix release ([8f0f25a](https://github.com/go-sdk/proto/commit/8f0f25a53de893ac59770e1be536f02688852ba8))
+
 ### [0.0.7](https://github.com/go-sdk/proto/compare/v0.0.6...v0.0.7) (2022-01-28)
 
 
