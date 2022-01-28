@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package common;
+
+option go_package = "github.com/go-sdk/pb/common";
+
+import public "google/api/field_behavior.proto";
+import public "google/api/httpbody.proto";
+import public "google/protobuf/any.proto";
+import public "google/protobuf/duration.proto";
+import public "google/protobuf/empty.proto";
+import public "google/protobuf/struct.proto";
+import public "google/protobuf/timestamp.proto";
+import public "google/protobuf/wrappers.proto";
+
+message Id {
+  string id = 1;
+}
+
+// 元数据
+message Meta {
+  // 创建时间
+  google.protobuf.Timestamp created_at = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // 创建人
+  google.protobuf.StringValue created_by = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // 更新时间
+  google.protobuf.Timestamp updated_at = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // 更新人
+  google.protobuf.StringValue updated_by = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // 删除时间
+  google.protobuf.Timestamp deleted_at = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
