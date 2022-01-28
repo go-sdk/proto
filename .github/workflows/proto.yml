@@ -58,12 +58,12 @@ jobs:
           mv ../git_bak .git
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - name: Update
+      - name: Version
         if: ${{ steps.release.outputs.release_created }}
         run: |
-          cd pb
           version=v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
-          sed -i "s|dev|$version|g" version.go
+          echo "PB_VERSION=$version" >> $GITHUB_ENV
+          sed -i "s|dev|$version|g" pb/version.go
       - name: Commit
         if: ${{ github.event_name != 'pull_request' }}
         run: |
@@ -71,11 +71,14 @@ jobs:
           git add -A
           git commit -m "automatically update generated proto"
           git push -u origin master
-      - name: Tag
+      - name: Create Tag
         if: ${{ steps.release.outputs.release_created }}
         run: |
           cd pb
-          version=v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
-          echo "new tag $version"
-          git tag "$version"
-          git push origin "$version"
+          echo "new tag ${{ env.PB_VERSION }}"
+          git tag "${{ env.PB_VERSION }}"
+          git push origin "${{ env.PB_VERSION }}"
+      - name: Create Release
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          curl -s -o /dev/null -X POST -H 'Authorization: token ${{ secrets.PAGE_PAT }}' -d '{"tag_name":"${{ env.PB_VERSION }}"}' -w "%{http_code}" https://api.github.com/repos/go-sdk/pb/releases
