@@ -81,4 +81,4 @@ jobs:
       - name: Create Release
         if: ${{ steps.release.outputs.release_created }}
         run: |
-          curl -s -o /dev/null -X POST -H 'Authorization: token ${{ secrets.PAGE_PAT }}' -d '{"tag_name":"${{ env.PB_VERSION }}"}' -w "%{http_code}" https://api.github.com/repos/go-sdk/pb/releases
+          curl -s -o /dev/null -X POST -H 'Authorization: token ${{ secrets.PAGE_PAT }}' -d '{"tag_name":"${{ env.PB_VERSION }}","name":"${{ env.PB_VERSION }}"}' -w "%{http_code}" https://api.github.com/repos/go-sdk/pb/releases
