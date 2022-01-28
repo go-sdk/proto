@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.1](https://github.com/go-sdk/proto/compare/v0.1.0...v0.1.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* fix checkout depth ([f9c7b68](https://github.com/go-sdk/proto/commit/f9c7b68e2886a50efc1005adff68bad1e0996896))
+
 ## [0.1.0](https://github.com/go-sdk/proto/compare/v0.0.8...v0.1.0) (2022-01-28)
 
 
