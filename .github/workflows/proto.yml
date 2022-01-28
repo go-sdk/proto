@@ -30,6 +30,7 @@ jobs:
           repository: go-sdk/pb
           path: pb
           token: ${{ secrets.PAGE_PAT }}
+          fetch-depth: 2
       - name: Backup
         if: ${{ github.event_name != 'pull_request' }}
         run: mv pb/.git git_bak
