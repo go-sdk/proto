@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.0.7](https://github.com/go-sdk/proto/compare/v0.0.6...v0.0.7) (2022-01-28)
+
+
+### Bug Fixes
+
+* fix tag ci ([2d17b1c](https://github.com/go-sdk/proto/commit/2d17b1c89f01d0e354b88ab3f686ff9a527cf3ec))
+
 ### [0.0.6](https://github.com/go-sdk/proto/compare/v0.0.5...v0.0.6) (2022-01-28)
 
 
