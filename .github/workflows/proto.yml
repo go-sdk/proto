@@ -30,7 +30,6 @@ jobs:
           repository: go-sdk/pb
           path: pb
           token: ${{ secrets.PAGE_PAT }}
-          fetch-depth: 0
       - name: Backup
         if: ${{ github.event_name != 'pull_request' }}
         run: mv pb/.git git_bak
@@ -63,6 +62,8 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         run: |
           cd pb
+          version=v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
+          sed -i "s|latest|$version|g" version.go
           git add -A
           git commit -m "automatically update generated proto"
           git push -u origin master
@@ -70,7 +71,7 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         run: |
           cd pb
-          ver=$(git describe --exact-match --tags HEAD 2>/dev/null)
-          echo "new tag $ver"
-          git tag "$ver"
-          git push origin "$ver"
+          version=v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
+          echo "new tag $version"
+          git tag "$version"
+          git push origin "$version"

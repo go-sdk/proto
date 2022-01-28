@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-VERSION=$(git describe --exact-match --tags HEAD 2>/dev/null || echo "latest")
+VERSION="latest"
 GITHASH=$(git rev-parse --short HEAD)
 BUILT=$(date +%FT%T%z)
 
