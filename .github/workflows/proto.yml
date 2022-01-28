@@ -59,11 +59,15 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - name: Update
-        if: ${{ github.event_name != 'pull_request' }}
+        if: ${{ steps.release.outputs.release_created }}
         run: |
           cd pb
           version=v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
           sed -i "s|latest|$version|g" version.go
+      - name: Commit
+        if: ${{ github.event_name != 'pull_request' }}
+        run: |
+          cd pb
           git add -A
           git commit -m "automatically update generated proto"
           git push -u origin master
