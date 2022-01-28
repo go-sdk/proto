@@ -63,7 +63,7 @@ jobs:
         run: |
           cd pb
           version=v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
-          sed -i "s|latest|$version|g" version.go
+          sed -i "s|dev|$version|g" version.go
       - name: Commit
         if: ${{ github.event_name != 'pull_request' }}
         run: |

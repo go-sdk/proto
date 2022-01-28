@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-VERSION="latest"
+VERSION="dev"
 GITHASH=$(git rev-parse --short HEAD)
 BUILT=$(date +%FT%T%z)
 
