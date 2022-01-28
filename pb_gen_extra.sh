@@ -4,7 +4,7 @@ set -euo pipefail
 
 VERSION="dev"
 GITHASH=$(git rev-parse --short HEAD)
-BUILT=$(date +%FT%T%z)
+BUILT=$(TZ=Asia/Shanghai date +%FT%T%z)
 
 cp -r dist/* pb/
 
