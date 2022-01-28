@@ -13,7 +13,6 @@ pushd pb >/dev/null
 go mod tidy
 
 cat >version.go <<EOF
-cat >pb/version.go <<EOF
 package pb
 
 var (

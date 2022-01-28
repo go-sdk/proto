@@ -18,24 +18,3 @@ jobs:
           bump-minor-pre-major: true
           bump-patch-for-minor-pre-major: true
           pull-request-title-pattern: "release: ${version}"
-      - name: Checkout PB
-        uses: actions/checkout@v2
-        if: ${{ steps.release.outputs.release_created }}
-        with:
-          repository: go-sdk/pb
-          path: pb
-          token: ${{ secrets.PAGE_PAT }}
-      - name: Git Config
-        if: ${{ steps.release.outputs.release_created }}
-        run: |
-          cd pb
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - name: Tag
-        if: ${{ steps.release.outputs.release_created }}
-        run: |
-          cd pb
-          ver=v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
-          echo "new tag $ver"
-          git tag "$ver"
-          git push origin "$ver"

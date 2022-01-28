@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+    tags:
+      - v*
   pull_request:
     branches:
       - master
@@ -57,3 +59,15 @@ jobs:
           git add -A
           git commit -m "automatically update generated proto"
           git push -u origin master
+      - name: Tag
+        if: ${{ github.event_name != 'pull_request' }}
+        run: |
+          if [ $(git describe --exact-match --tags HEAD 2>/dev/null | wc -l) -gt 0 ]; then
+            cd pb
+            ver=$(git describe --exact-match --tags HEAD 2>/dev/null)
+            echo "new tag $ver"
+            git tag "$ver"
+            git push origin "$ver"
+          else
+            echo "no tag"
+          fi
