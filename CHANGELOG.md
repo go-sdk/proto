@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.2.0](https://github.com/go-sdk/proto/compare/v0.1.6...v0.2.0) (2022-01-28)
+
+
+### Features
+
+* add release name ([d6bd188](https://github.com/go-sdk/proto/commit/d6bd1883ee05ab7533032b761c51a1cf3c97c78a))
+
+
+### Performance Improvements
+
+* perfect git commit message ([4d00357](https://github.com/go-sdk/proto/commit/4d003571b8e6f6951a6d1aafc241d4798e8d9546))
+
+
+### release
+
+* 0.2.0 ([7dd60bd](https://github.com/go-sdk/proto/commit/7dd60bd60c8bc29015819490702330b166d51e99))
+
 ### [0.1.6](https://github.com/go-sdk/proto/compare/v0.1.5...v0.1.6) (2022-01-28)
 
 
