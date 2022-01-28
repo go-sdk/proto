@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.0.5](https://github.com/go-sdk/proto/compare/v0.0.4...v0.0.5) (2022-01-28)
+
+
+### Features
+
+* release tag use new workflow ([5dcc2c3](https://github.com/go-sdk/proto/commit/5dcc2c3d90557ba5a6761236300eaaa95b5b5929))
+
 ### [0.0.4](https://github.com/go-sdk/proto/compare/v0.0.3...v0.0.4) (2022-01-28)
 
 
