@@ -5,8 +5,19 @@
 
 ## Install
 
+![GO](https://img.shields.io/github/go-mod/go-version/go-sdk/proto?style=for-the-badge)
+![Release](https://img.shields.io/github/v/release/go-sdk/proto?display_name=tag&style=for-the-badge)
+
 ```shell
 go get -u github.com/go-sdk/pb
+```
+
+## Contribution
+
+- code formatter `clang-format 13.0.0`
+
+```text
+-style="{BasedOnStyle: Google, IndentWidth: 2, ColumnLimit: 0, AlignConsecutiveAssignments: true, AlignConsecutiveDeclarations: true}" -i $FilePath$
 ```
 
 ## License

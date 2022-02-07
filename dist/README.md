@@ -4,6 +4,9 @@
 
 ## Install
 
+![GO](https://img.shields.io/github/go-mod/go-version/go-sdk/pb?style=for-the-badge)
+![Release](https://img.shields.io/github/v/release/go-sdk/pb?display_name=tag&style=for-the-badge)
+
 ```shell
 go get -u github.com/go-sdk/pb
 ```
