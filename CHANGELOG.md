@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.2.1](https://github.com/go-sdk/proto/compare/v0.2.0...v0.2.1) (2022-02-09)
+
+
+### Features
+
+* add common helper ([4c2d804](https://github.com/go-sdk/proto/commit/4c2d80480fcdc6a5315755aa26e7545cfb11162d))
+* buf version 1.0.0-rc12 ([06847db](https://github.com/go-sdk/proto/commit/06847db2e6d608509b13a5be841108da45d66e8d))
+
 ## [0.2.0](https://github.com/go-sdk/proto/compare/v0.1.6...v0.2.0) (2022-01-28)
 
 
