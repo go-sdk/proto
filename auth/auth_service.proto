@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "github.com/go-sdk/pb/auth";
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+import "common/common.proto";
+
+service AuthService {
+  // 鉴权模块
+  rpc Health(google.protobuf.Empty) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      get: "/auth/_health"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {}
+    };
+  };
+}

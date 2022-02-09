@@ -37,3 +37,28 @@ var UInt32 = wrapperspb.UInt32
 var Bool = wrapperspb.Bool
 var String = wrapperspb.String
 var Bytes = wrapperspb.Bytes
+
+func NewId(id string) *Id {
+	return &Id{Id: id}
+}
+
+func NewCreatedMeta(by string) *Meta {
+	return &Meta{
+		CreatedAt: TimestampNow(),
+		CreatedBy: String(by),
+	}
+}
+
+func NewUpdatedMeta(by string) *Meta {
+	return &Meta{
+		UpdatedAt: TimestampNow(),
+		UpdatedBy: String(by),
+	}
+}
+
+func NewDeletedMeta(by string) *Meta {
+	return &Meta{
+		DeletedAt: TimestampNow(),
+		UpdatedBy: String(by),
+	}
+}
