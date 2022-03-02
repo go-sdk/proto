@@ -4,7 +4,7 @@ deps:
   - remote: buf.build
     owner: go-sdk
     repository: protoc-gen-validate
-    commit: 44888617700643699d9859c32c0ca279
+    commit: 611ed4a62900403ab9b6a775382b5d8f
   - remote: buf.build
     owner: googleapis
     repository: googleapis
