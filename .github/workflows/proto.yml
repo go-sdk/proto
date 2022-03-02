@@ -22,9 +22,9 @@ jobs:
           bump-patch-for-minor-pre-major: true
           pull-request-title-pattern: "release: ${version}"
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Checkout PB
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         if: ${{ github.event_name != 'pull_request' }}
         with:
           repository: go-sdk/pb
