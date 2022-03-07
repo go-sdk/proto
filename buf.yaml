@@ -1,8 +1,8 @@
 version: v1
 deps:
-  - buf.build/googleapis/googleapis:0c05a4978a16323933985ce1e2076e866ecc83ae
+  - buf.build/googleapis/googleapis:af3ee0c71ab362af1ce28855b0bf50101d829b4d
   - buf.build/grpc-ecosystem/grpc-gateway
-  - buf.build/go-sdk/protoc-gen-validate:v0.6.6
+  - buf.build/go-sdk/protoc-gen-validate:v0.6.7
 build:
   excludes:
     - include
