@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.2.2](https://github.com/go-sdk/proto/compare/v0.2.1...v0.2.2) (2022-03-07)
+
+
+### Features
+
+* update protoc validate to v0.6.6 ([14dd854](https://github.com/go-sdk/proto/commit/14dd854e3609b27f3aa8ffa83ec763f211a96775))
+
 ### [0.2.1](https://github.com/go-sdk/proto/compare/v0.2.0...v0.2.1) (2022-02-09)
 
 
