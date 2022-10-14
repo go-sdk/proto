@@ -34,7 +34,7 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         run: mv pb/.git git_bak
       - name: Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3.0.11
         with:
           path: |
             ~/.cache/buf
