@@ -42,7 +42,7 @@ jobs:
             ~/go/pkg/mod
           key: ${{ runner.os }}-cache-${{ hashFiles('**/buf.lock') }}
       - name: Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v4
         with:
           go-version: 1.17
       - name: Buf
